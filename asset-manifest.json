@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/talka19/goit-react-hw-04-phonebook/static/css/main.d0308d9f.css",
+    "main.js": "/talka19/goit-react-hw-04-phonebook/static/js/main.6f725141.js",
+    "index.html": "/talka19/goit-react-hw-04-phonebook/index.html",
+    "main.d0308d9f.css.map": "/talka19/goit-react-hw-04-phonebook/static/css/main.d0308d9f.css.map",
+    "main.6f725141.js.map": "/talka19/goit-react-hw-04-phonebook/static/js/main.6f725141.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d0308d9f.css",
+    "static/js/main.6f725141.js"
+  ]
+}
