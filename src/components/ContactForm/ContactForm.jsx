@@ -1,46 +1,50 @@
-
-
-import React, {Component} from "react";
+import {useState} from "react";
 import css from "./ContactForm.module.css"
+import shortid from 'shortid';
 
-class ContactForm extends Component {
-   state = {
-     name: '',
-     number: '',
-    }
+export function ContactForm ({onSubmit}) {
+   const [name, setName] = useState('');
+   const [number, setNumber] = useState('');
+  
+    const handleChange = e => {
+        const {name, value} = e.currentTarget;
 
-    handleChange = name =>e => {
-        const {target} = e
-
-        this.setState(() =>({
-            [name]: target.value,
-        }));
+       switch (name) {
+        case 'name':
+            setName(value); 
+            break;
+        case 'number':
+            setNumber(value);
+            break; 
+        default:
+            return;
+       }
     };
 
-    handleSubmit = e => {
+    const handleSubmit = e => {
         e.preventDefault();
-
-        const {onSubmit} = this.props;
-        onSubmit(this.state);
-        this.resetForm();
+        const newContact = {
+                id: shortid.generate(),
+                name: name,
+                number: number,
+              };
+        onSubmit(newContact);
+        resetForm();
     };
 
-    resetForm = () => {
-        this.setState(() => ({
-            name: '',
-            number: '',
-        }));
+    const resetForm = () => {
+        setName('');
+        setNumber('');
     };
 
-    render() {
         return (
-            <form className={css.form} onSubmit={this.handleSubmit}>
+            <form className={css.form} onSubmit={handleSubmit}>
                 <label>
                     Name
                     <input
                       className={css.inputName}
-                      value={this.state.name}
-                      onChange={this.handleChange('name')}
+                      value={name}
+                      onChange={handleChange}
                       type="text"
                       name="name"
                       pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -52,8 +56,8 @@ class ContactForm extends Component {
                     Number
                     <input
                       className={css.inputNumber}
-                      value={this.state.number}
-                      onChange={this.handleChange('number')}
+                      value={number}
+                      onChange={handleChange}
                       type="tel"
                       name="number"
                       pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -67,7 +71,3 @@ class ContactForm extends Component {
             </form>
         )
     }
-
-}
-
-export default ContactForm;

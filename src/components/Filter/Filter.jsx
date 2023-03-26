@@ -6,7 +6,8 @@ const Filter = ({value, onChange}) => (
     <label className={css.labelFilter}>
       Filter
       <input
-        type="name"
+        type="text"
+        name="filter"
         value={value}
         onChange={onChange}
         className={css.filterInput}
